@@ -1,10 +1,13 @@
-export type SiteConfig = typeof siteConfig;
+// export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   url: "https://jimmyt.dev",
   email: "truong.jimmy@outlook.com",
   title: "Jimmy",
   profile: "/profile.webp",
+  description: "Jimmy's personal website",
+  author: "Jimmy Truong",
+  ogImage: "/og.png",
   nav: [
     {
       title: "Home",

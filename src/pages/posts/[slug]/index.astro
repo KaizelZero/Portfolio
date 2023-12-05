@@ -1,7 +1,8 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
-import { formatDate } from "@/utils";
+import { formatDate, slugify } from "@/utils";
+import { siteConfig } from "@/data/config";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -18,41 +19,53 @@ type Props = {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+
+const { title, description } = post.data;
+
+const ogUrl = new URL(`/posts/${slugify(title)}.png`, Astro.url.origin).href;
+
+const canonicalURL = new URL(`/posts/${post.slug}`, Astro.url.origin).href;
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
-  <article class="post mx-auto flex w-full max-w-3xl flex-col gap-4">
-    <header role="presentation">
-      <h1 class="text-md">
-        {post.data.title} - {formatDate(post.data.publishedAt)}
-      </h1>
-      <p class="italic">{post.data.description}</p>
-    </header>
-    {
-      post.data.image && (
-        <img
-          class="mx-auto rounded-xl"
-          style="min-width: 80%;"
-          loading="lazy"
-          src={post.data.image}
-          alt={post.data.title}
-        />
-      )
-    }
-    {
-      post.data.youtube && (
-        <div class="embed-responsive aspect-ratio-16/9 mt-6 lg:mt-12">
-          <iframe
-            width="700"
-            height="500"
-            class="embed-responsive-item"
-            src={`https://www.youtube.com/embed/${post.data.youtube}`}
-            allow="accelerometer; autoplay; encrypted-media; gyroscope;"
-            allowfullscreen
-          />
-        </div>
-      )
-    }
-    <Content />
-  </article>
+<Layout
+  title={title}
+  author={siteConfig.author}
+  description={description}
+  ogImage={ogUrl}
+  canonicalURL={canonicalURL}
+>
+  <main class="mx-auto w-full max-w-3xl px-4 pb-12">
+    <button
+      class="focus-outline mb-2 flex items-center hover:opacity-75"
+      onclick="history.back()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        ><path
+          fill="currentColor"
+          d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6L14 18Z"></path></svg
+      >
+      <span>Go back</span>
+    </button>
+    <!-- <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1> -->
+    <h1
+      class="text-2xl font-semibold text-accent"
+      transition:name={slugify(title)}
+    >
+      {title}
+    </h1>
+    <!-- <Datetime datetime={pubDatetime} size="lg" className="my-2" /> -->
+    {formatDate(post.data.publishedAt)}
+    <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
+      <Content />
+    </article>
+
+    <!-- <ul class="tags-container">
+      {tags.map((tag) => <Tag name={slugifyStr(tag)} />)}
+    </ul> -->
+  </main>
+  <!-- <Footer /> -->
 </Layout>
