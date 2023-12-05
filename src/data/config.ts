@@ -4,7 +4,7 @@ export const siteConfig = {
   url: "https://jimmyt.dev",
   email: "truong.jimmy@outlook.com",
   title: "Jimmy",
-  profile: "/profile.webp",
+  profile: "/images/Profile.jpg",
   description: "Jimmy's personal website",
   author: "Jimmy Truong",
   ogImage: "/og.png",
