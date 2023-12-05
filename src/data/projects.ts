@@ -1,4 +1,3 @@
-// const { title, tech, inProgress, image, liveUrl, githubUrl  } = Astro.props;
 export type Project = {
   title: string;
   tech: string[];

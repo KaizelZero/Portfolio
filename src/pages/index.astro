@@ -6,10 +6,12 @@ import { siteConfig } from "@/data/config";
 import Layout from "@/layouts/Layout.astro";
 import SocialLinks from "@/components/SocialLinks.astro";
 import Link from "@/components/Link.astro";
-import projects from "@/data/projects";
 import ProjectCard from "@/components/ProjectCard.astro";
-import PostCard from "@/components/PostCard.astro";
+import projects from "@/data/projects";
+import ExperienceCard from "@/components/ExperienceCard.astro";
+import experiences from "@/data/experiences";
 
+import PostCard from "@/components/PostCard.astro";
 const posts = (await getCollection("posts")).sort(function (first, second) {
   return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
 });
@@ -70,49 +72,71 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
       </section>
     </article>
 
+    <!-- EXPERIENCE SECTION -->
+    {
+      experiences.filter((experience) => experience.isComingSoon).length >
+        0 && (
+        <article class="flex flex-col gap-8">
+          <header class="flex w-full flex-row justify-between gap-2">
+            <h3 class="text-lg text-neutral-100">Experience</h3>
+          </header>
+
+          <section class="flex flex-col gap-4">
+            {experiences.map((experience) => (
+              <ExperienceCard {...experience} />
+            ))}
+          </section>
+        </article>
+      )
+    }
+
     <!-- POSTS SECTION -->
-    <article class="flex flex-col gap-8">
-      <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">Latest posts</h3>
-        <Link href="/posts" label="See all posts" isUnderline target="_self" />
-      </header>
-      {posts.length === 0 && <p>Soon, stay connected 👀...</p>}
+    {
+      posts.filter((post) => post.data.isPublish).length > 0 && (
+        <article class="flex flex-col gap-8">
+          <header class="flex w-full flex-row justify-between gap-2">
+            <h3 class="text-lg text-neutral-100">Latest posts</h3>
+            <Link
+              href="/posts"
+              label="See all posts"
+              isUnderline
+              target="_self"
+            />
+          </header>
 
-      <section class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {
-          posts
-            .filter((post) => post.data.isPublish)
-            .slice(0, 3)
-            .map((post) => (
-              <div class="col-span-1">
-                <PostCard
-                  publishedAt={post.data.publishedAt}
-                  title={post.data.title}
-                  description={post.data.description}
-                  slug={post.slug}
-                  image={post.data.image ?? ""}
-                />
-              </div>
-            ))
-        }
-      </section>
-    </article>
-
-    <!-- CONTACT SECTION -->
-    <article class="flex flex-col gap-8 text-muted-foreground">
-      <header
-        class="flex w-full flex-row justify-between gap-2 text-foreground"
-      >
-        <h3 class="text-lg">Get in touch</h3>
-      </header>
-      <p>
-        Email me at <Link
-          href={`mailto:${siteConfig.email}`}
-          label={siteConfig.email}
-        /> or follow me via my social links.
-      </p>
-
-      <SocialLinks />
-    </article>
+          <section class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {posts
+              .filter((post) => post.data.isPublish)
+              .slice(0, 3)
+              .map((post) => (
+                <div class="col-span-1">
+                  <PostCard
+                    publishedAt={post.data.publishedAt}
+                    title={post.data.title}
+                    description={post.data.description}
+                    slug={post.slug}
+                    image={post.data.image ?? ""}
+                  />
+                </div>
+              ))}
+          </section>
+        </article>
+      )
+    }
   </main>
+
+  <!-- CONTACT SECTION -->
+  <article class="flex flex-col gap-8 text-muted-foreground">
+    <header class="flex w-full flex-row justify-between gap-2 text-foreground">
+      <h3 class="text-lg">Get in touch</h3>
+    </header>
+    <p>
+      Email me at <Link
+        href={`mailto:${siteConfig.email}`}
+        label={siteConfig.email}
+      /> or follow me via my social links.
+    </p>
+
+    <SocialLinks />
+  </article>
 </Layout>

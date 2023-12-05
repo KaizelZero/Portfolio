@@ -3,7 +3,7 @@ title: "AstroPaper v3"
 publishedAt: 2023-12-05
 description: "Lorem ipsum dolor sit amet consectetur et ultrices blandit neque ege"
 slug: "astro-paper-v3"
-isPublish: true
+isPublish: false
 image: "https://github.com/satnaing/astro-paper/assets/53733092/1ef0cf03-8137-4d67-ac81-84a032119e3a"
 ---
 
