@@ -1,0 +1,119 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+import { siteConfig } from "@/data/config";
+import Layout from "@/layouts/Layout.astro";
+import SocialLinks from "@/components/SocialLinks.astro";
+import Link from "@/components/Link.astro";
+import projects from "@/data/projects";
+import ProjectCard from "@/components/ProjectCard.astro";
+import PostCard from "@/components/PostCard.astro";
+
+const posts = (await getCollection("posts")).sort(function (first, second) {
+  return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
+});
+---
+
+<Layout>
+  <main class="flex flex-col gap-20">
+    <!-- HERO SECTION -->
+    <article
+      class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-12"
+    >
+      {
+        siteConfig.profile && (
+          <Image
+            src={siteConfig.profile}
+            class="w-1/4 self-center rounded-full border-4 shadow-lg"
+            alt="Your Profile"
+            width="200"
+            height="200"
+          />
+        )
+      }
+
+      <div class="flex flex-col gap-4">
+        <h1 class="text-4xl font-bold">Hello, I'm Jimmy!</h1>
+
+        <h2 class="text-xl leading-7">
+          I'm a <span class="text-accent">software engineer</span> and a student
+          at the University of Waterloo. I'm passionate about building products
+          that make a difference.
+        </h2>
+
+        <SocialLinks class="mt-4" />
+      </div>
+    </article>
+
+    <!-- PROJECTS SECTION -->
+    <article class="flex flex-col gap-8">
+      <header class="flex w-full flex-row justify-between gap-2">
+        <h3 class="text-lg text-neutral-100">Featured projects</h3>
+        <Link
+          href="/projects"
+          label="See all projects"
+          isUnderline
+          target="_self"
+        />
+      </header>
+      {projects.length === 0 && <p>Oops, I must work^^^^^</p>}
+      <section class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {
+          projects.length !== 0 &&
+            projects.slice(0, 4).map((project) => (
+              <div class="col-span-1">
+                <ProjectCard {...project} />
+              </div>
+            ))
+        }
+      </section>
+    </article>
+
+    <!-- POSTS SECTION -->
+    <article class="flex flex-col gap-8">
+      <header class="flex w-full flex-row justify-between gap-2">
+        <h3 class="text-lg text-neutral-100">Latest posts</h3>
+        <Link href="/posts" label="See all posts" isUnderline target="_self" />
+      </header>
+      {posts.length === 0 && <p>Soon, stay connected 👀...</p>}
+
+      <section class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {
+          posts.length !== 0 &&
+            posts.slice(0, 3).map(
+              (post) =>
+                post.data.isPublish && (
+                  <div class="col-span-1">
+                    <PostCard
+                      publishedAt={post.data.publishedAt}
+                      title={post.data.title}
+                      description={post.data.description}
+                      slug={post.slug}
+                      image={post.data.image ?? ""}
+                    />
+                  </div>
+                ),
+            )
+        }
+      </section>
+    </article>
+
+    <!-- CONTACT SECTION -->
+    <article class="flex flex-col gap-8 text-muted-foreground">
+      <header
+        class="flex w-full flex-row justify-between gap-2 text-foreground"
+      >
+        <h3 class="text-lg">Get in touch</h3>
+      </header>
+      <p>
+        Email me at <Link
+          href={`mailto:${siteConfig.email}`}
+          label={siteConfig.email}
+        /> or follow me via my social links.
+      </p>
+
+      <SocialLinks />
+    </article>
+  </main>
+</Layout>

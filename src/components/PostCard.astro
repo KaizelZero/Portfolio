@@ -1,0 +1,35 @@
+---
+import { formatDate } from "@/utils";
+
+type Props = {
+  title: string;
+  publishedAt: Date;
+  slug: string;
+  image: string;
+  description: string;
+};
+
+const { title, description, publishedAt, slug, image } = Astro.props;
+---
+
+<a
+  class="relative top-0 block h-full w-full cursor-pointer overflow-hidden rounded-md border border-muted-foreground p-2 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:border-foreground"
+  href={`/posts/${slug}`}
+>
+  <img
+    src={image ?? ""}
+    alt={title}
+    loading="lazy"
+    width="360"
+    height="192"
+    class="aspect-[15/7] w-full rounded-sm object-cover"
+  />
+  <div class="mt-4">
+    <h2 class="text-2xl font-bold leading-tight">
+      {title}
+    </h2>
+    <div class="mt-4 flex items-center text-xs">
+      {formatDate(publishedAt)}
+    </div>
+  </div>
+</a>

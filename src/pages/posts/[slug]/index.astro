@@ -1,0 +1,58 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import { formatDate } from "@/utils";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+type Props = {
+  post: CollectionEntry<"posts">;
+};
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <article class="post mx-auto flex w-full max-w-3xl flex-col gap-4">
+    <header role="presentation">
+      <h1 class="text-md">
+        {post.data.title} - {formatDate(post.data.publishedAt)}
+      </h1>
+      <p class="italic">{post.data.description}</p>
+    </header>
+    {
+      post.data.image && (
+        <img
+          class="mx-auto rounded-xl"
+          style="min-width: 80%;"
+          loading="lazy"
+          src={post.data.image}
+          alt={post.data.title}
+        />
+      )
+    }
+    {
+      post.data.youtube && (
+        <div class="embed-responsive aspect-ratio-16/9 mt-6 lg:mt-12">
+          <iframe
+            width="700"
+            height="500"
+            class="embed-responsive-item"
+            src={`https://www.youtube.com/embed/${post.data.youtube}`}
+            allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+            allowfullscreen
+          />
+        </div>
+      )
+    }
+    <Content />
+  </article>
+</Layout>
