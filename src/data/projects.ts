@@ -10,21 +10,21 @@ export type Project = {
 
 const projects: Project[] = [
   {
-    title: "Dictionary App",
-    tech: ["ReactJS (NextJS)", "react-query", "zod"],
-    githubUrl: "https://github.com/MaeWolff/dictionary-app",
-    liveUrl: "https://google.com",
-    image:
-      "https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
-    description: "This is a description",
+    title: "Unstoppable Game",
+    tech: ["HTML", "JavaScript", "CSS"],
+    githubUrl: "https://github.com/kaizelzero/Unstoppable",
+    liveUrl: "https://kaizelzero.github.io/Unstoppable/",
+    image: "/images/projects/Unstoppable.png",
+    description:
+      "Unstoppable is a 2D Galaga type game where the player controls a ship that can move and shoot. The player must avoid enemy lasers while shooting the enemies to gain points. The game was created using HTML and JavaScript. Game works best on Google Chrome.",
   },
   {
-    title: "Dictionary App",
-    tech: ["ReactJS (NextJS)", "react-query", "zod"],
-    githubUrl: "https://github.com/MaeWolff/dictionary-app",
-    liveUrl: "https://google.com",
-    image:
-      "https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    title: "Clue Game",
+    tech: ["Java", "OOP", "AGILE"],
+    githubUrl: "https://github.com/kaizelzero/ClueGame",
+    image: "/images/projects/ClueGame.png",
+    description:
+      "Simple Clue Game with dumb AI and Interactive GUI. This was a group project where we created a game using Java and implemented OOP and AGILE practices. During the development of this game, we had to create unit tests to ensure that our project's logic was correct and worked. This project also helped us develop our Github skills by using branches and merge requests to merge the branch into main.",
   },
   {
     title: "Portfolio / Lina BLIDI",
