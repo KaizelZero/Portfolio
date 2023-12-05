@@ -14,7 +14,7 @@ const { title, tech, inProgress, image, liveUrl, githubUrl } = Astro.props;
       githubUrl && (
         <a
           href={githubUrl}
-          class="rounded-full bg-black/50 p-3 backdrop-blur-md transition-all hover:bg-black/70"
+          class="rounded-full bg-muted p-3 backdrop-blur-md transition-all hover:text-accent"
           aria-label="Social Media"
           target="_blank"
         >
@@ -40,7 +40,7 @@ const { title, tech, inProgress, image, liveUrl, githubUrl } = Astro.props;
       liveUrl && (
         <a
           href={liveUrl}
-          class="ml-1 rounded-full bg-black/50 p-3 text-white backdrop-blur-md transition-all hover:bg-black/70"
+          class="ml-1 rounded-full bg-muted p-3 backdrop-blur-md transition-all hover:text-accent"
           aria-label="Social Media"
           target="_blank"
         >
@@ -66,7 +66,7 @@ const { title, tech, inProgress, image, liveUrl, githubUrl } = Astro.props;
     {
       inProgress && (
         <span
-          class="flex flex-row rounded-full bg-black/50 p-3 backdrop-blur-md transition-all hover:bg-black/70"
+          class="flex flex-row rounded-full bg-muted p-3 backdrop-blur-md transition-all hover:text-accent"
           aria-label="Social Media"
         >
           <p class="mr-2">In Progress</p>

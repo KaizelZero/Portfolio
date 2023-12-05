@@ -17,7 +17,7 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
 });
 ---
 
-<Layout title="Jimmy Truong">
+<Layout title={siteConfig.title}>
   <main class="flex flex-col gap-20">
     <!-- HERO SECTION -->
     <article
@@ -41,7 +41,9 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
         <h2 class="text-xl leading-7">
           I'm a <span class="text-accent">software engineer</span> and a
           Computer Science graduate from the Colorado School of Mines. I'm
-          passionate about building products that make a difference.
+          passionate about building products that make a difference. I'm
+          currently looking for full-time opportunities. Feel free to reach out
+          to me at my email or social links below!
         </h2>
 
         <SocialLinks class="mt-4" />
@@ -52,14 +54,13 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
     <article class="flex flex-col gap-8">
       <header class="flex w-full flex-row justify-between gap-2">
         <h3 class="text-lg text-neutral-100">Featured projects</h3>
-        <Link
+        <!-- <Link
           href="/projects"
           label="See all projects"
           isUnderline
           target="_self"
-        />
+        /> -->
       </header>
-      {projects.length === 0 && <p>Oops, I must work^^^^^</p>}
       <section class="grid grid-cols-1 gap-4 md:grid-cols-2">
         {
           projects.length !== 0 &&
@@ -78,7 +79,7 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
         0 && (
         <article class="flex flex-col gap-8">
           <header class="flex w-full flex-row justify-between gap-2">
-            <h3 class="text-lg text-neutral-100">Experience</h3>
+            <h3 class="text-lg">Experience</h3>
           </header>
 
           <section class="flex flex-col gap-4">
@@ -95,7 +96,7 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
       posts.filter((post) => post.data.isPublish).length > 0 && (
         <article class="flex flex-col gap-8">
           <header class="flex w-full flex-row justify-between gap-2">
-            <h3 class="text-lg text-neutral-100">Latest posts</h3>
+            <h3 class="text-lg">Latest posts</h3>
             <Link
               href="/posts"
               label="See all posts"

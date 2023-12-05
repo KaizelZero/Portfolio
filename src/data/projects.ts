@@ -34,6 +34,13 @@ const projects: Project[] = [
     description:
       "A game I made for a gamejam. It's a top-down shooter where you can only shoot when you are in a circle of light",
   },
+  // {
+  //   title: "Portfolio / Template",
+  //   tech: ["Astro"],
+  //   inProgress: true,
+  //   image:
+  //     "https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+  // },
 ];
 
 export default projects;

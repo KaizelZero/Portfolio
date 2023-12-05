@@ -3,7 +3,7 @@
 export const siteConfig = {
   url: "https://jimmyt.dev",
   email: "truong.jimmy@outlook.com",
-  title: "Jimmy",
+  title: "Jimmy Truong - Portfolio",
   profile: "/images/Profile.jpg",
   description: "Jimmy's personal website",
   author: "Jimmy Truong",
@@ -13,27 +13,27 @@ export const siteConfig = {
       title: "Home",
       href: "/",
     },
-    {
-      title: "Posts",
-      href: "/posts",
-    },
-    {
-      title: "Projects",
-      href: "/projects",
-    },
+    // {
+    //   title: "Posts",
+    //   href: "/posts",
+    // },
+    // {
+    //   title: "Projects",
+    //   href: "/projects",
+    // },
   ],
   socials: [
+    // {
+    //   label: "X",
+    //   link: "https://twitter.com/itsstormzz_",
+    // },
     {
-      label: "X",
-      link: "https://twitter.com/itsstormzz_",
-    },
-    {
-      label: "Bento",
-      link: "https://bento.me/m-wolff",
+      label: "LinkedIn",
+      link: "https://www.linkedin.com/in/truong-jimmy/",
     },
     {
       label: "Github",
-      link: "https://github.com/MaeWolff",
+      link: "https://github.com/KaizelZero",
     },
   ],
 };
