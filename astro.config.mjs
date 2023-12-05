@@ -33,7 +33,7 @@ export default defineConfig({
       ],
     ],
     shikiConfig: {
-      theme: "nord",
+      theme: "dracula",
       wrap: false,
     },
   },

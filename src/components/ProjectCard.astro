@@ -1,5 +1,6 @@
 ---
 import type { Project } from "@/data/projects";
+import { Image } from "astro:assets";
 
 type Props = Project;
 
@@ -93,8 +94,10 @@ const { title, tech, inProgress, image, liveUrl, githubUrl } = Astro.props;
       inProgress ? "hover:cursor-default" : "hover:cursor-pointer"
     }`}
   >
-    <img
-      src={image}
+    <Image
+      src={image as string}
+      width={1440}
+      height={960}
       loading="lazy"
       alt="featureImage"
       class="absolute inset-0 h-full w-full object-cover object-center transition duration-300 group-hover:scale-105"

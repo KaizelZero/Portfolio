@@ -66,10 +66,10 @@
     @apply bg-transparent;
   } */
 
+  /* prose-a:!decoration-dashed  */
   .prose {
     @apply prose-headings:!mb-3 prose-headings:!text-primary 
     prose-h3:italic prose-p:!text-primary prose-a:!text-primary 
-    /* prose-a:!decoration-dashed  */
     prose-a:underline-offset-4
     hover:prose-a:text-accent prose-blockquote:!border-l-accent
     prose-blockquote:border-opacity-50 prose-blockquote:opacity-80
@@ -77,8 +77,8 @@
     prose-strong:!text-primary
 
     
-    prose-code:rounded prose-code:bg-muted
-    prose-code:bg-opacity-75 prose-code:p-1 prose-code:!text-accent 
+    prose-code:rounded prose-code:bg-muted/75
+    prose-code:p-1 prose-code:!text-[#86ACF8]
     prose-code:before:!content-[''] prose-code:after:!content-['']
     prose-pre:!text-primary prose-ol:!text-primary 
     prose-ul:overflow-x-clip prose-ul:!text-primary prose-li:marker:!text-accent

@@ -17,20 +17,18 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
     <ul role="list" class="flex flex-row gap-2">
       {
         siteConfig.nav.map((item, index) => (
-          <div class="flex">
-            <li>
-              <a
-                href={item.href}
-                class:list={{
-                  ["hover:text-foreground"]: true,
-                  ["text-foreground"]: pathname === item.href,
-                }}
-              >
-                {item.title}
-              </a>
-            </li>
-            {index < siteConfig.nav.length - 1 && <li class="ml-2">/</li>}
-          </div>
+          <li class="flex">
+            <a
+              href={item.href}
+              class:list={{
+                ["hover:text-foreground"]: true,
+                ["text-foreground"]: pathname === item.href,
+              }}
+            >
+              {item.title}
+            </a>
+            {index < siteConfig.nav.length - 1 && <span class="ml-2">/</span>}
+          </li>
         ))
       }
     </ul>
