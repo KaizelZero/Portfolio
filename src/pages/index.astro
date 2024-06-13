@@ -1,6 +1,9 @@
 ---
-import AboutMe from "../components/AboutMe.astro";
-import Hero from "../components/Hero.astro";
+import AboutMe from "@/components/AboutMe.astro";
+import Hero from "@/components/Hero.astro";
+import Layout from "@/layouts/Layout.astro";
+import { siteConfig } from "@/data/config";
+import Card from "@/components/Card/index.astro";
 ---
 
 <script>
@@ -28,27 +31,17 @@ import Hero from "../components/Hero.astro";
   timeline(sequence as TimelineDefinition);
 </script>
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body
-    class="bg-[#111111] md:h-screen flex flex-col justify-center items-center"
+<Layout title={siteConfig.title}>
+  <main
+    class="text-white m-auto p-2 grid gap-2 max-w-6xl overflow-hidden relative w-full sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:h-screen lg:grid-rows-8 lg:grid-cols-4 lg:gap-4 lg:max-h-[800px]"
   >
-    <div
-      slot="loader"
-      class="loader bg-[#111111] text-neutral-50 text-3xl font-black uppercase flex justify-center items-center w-screen h-screen z-50 fixed top-0 bottom-0 right-0 left-0"
-    >
-    </div>
-    <main
-      class="text-white m-auto p-2 grid gap-2 max-w-6xl overflow-hidden relative w-full sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:h-screen lg:grid-rows-8 lg:grid-cols-4 lg:gap-4 lg:max-h-[800px]"
-    >
-      <Hero />
-      <AboutMe />
-    </main>
-  </body>
-</html>
+    <Hero />
+    <AboutMe />
+    <Card
+      colSpan="md:col-span-1"
+      rowSpan="md:row-span-2 flex gap-4"
+      title="Blog"
+      href="/blog"
+    />
+  </main>
+</Layout>
