@@ -57,7 +57,7 @@ const socialImageURL = new URL(
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImageURL} />
 
-    <!-- Google Font -->
+    <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -65,10 +65,18 @@ const socialImageURL = new URL(
       rel="stylesheet"
     />
 
+    <!-- DM Sans Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+
     <ViewTransitions />
   </head>
   <body
-    class="bg-[#111111] md:h-screen flex flex-col justify-center items-center font-sans"
+    class="bg-[#111111] md:h-screen flex flex-col justify-center items-center font-sans text-white"
   >
     <slot />
   </body>
