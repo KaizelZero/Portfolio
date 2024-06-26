@@ -13,6 +13,7 @@ export default {
         background: "#171717",
         border: "#2C2C2C",
         primary: "#E63946",
+        secondary: "#D1D5DB",
       },
     },
   },

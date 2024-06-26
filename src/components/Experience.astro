@@ -1,0 +1,24 @@
+---
+import Card from "@/components/Card/index.astro";
+---
+
+<Card colSpan="md:col-span-1" rowSpan="md:row-span-4">
+  <div class="h-full">
+    <header class="flex items-center">
+      <h1 class="text-white text-xl font-bold">Education</h1>
+    </header>
+    <div class="flex flex-col mt-2">
+      <a
+        href="https://www.mines.edu/"
+        target="_blank"
+        class="hover:underline hover:underline-offset-2"
+      >
+        <h2>Colorado School of Mines</h2>
+      </a>
+      <p class="text-secondary">BS in Computer Science</p>
+    </div>
+    <div class="flex flex-col mt-4 w-fit">
+      <!-- Put work experience here... when i have it -->
+    </div>
+  </div>
+</Card>
