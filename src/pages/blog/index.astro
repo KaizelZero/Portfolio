@@ -3,14 +3,9 @@ import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import PostRow from "@/components/Blog/PostRow.astro";
 
-const posts = (await getCollection("blog"))?.sort(
-  (
-    blogEntryA: { data: { pubDate: any } },
-    blogEntryB: { data: { pubDate: any } }
-  ) =>
-    (blogEntryB.data.pubDate || new Date()).getTime() -
-    (blogEntryA.data.pubDate || new Date()).getTime()
-);
+const posts = (await getCollection("blog"))?.sort(function (first, second) {
+  return first.data.publishedAt.getTime() - second.data.publishedAt.getTime();
+});
 ---
 
 <Layout title="Jimmy Truong - Blog">
@@ -27,13 +22,14 @@ const posts = (await getCollection("blog"))?.sort(
     <ul class="w-full">
       {
         posts?.map(
-          (post: { data: { title: any; pubDate: any }; slug: string }) => (
-            <PostRow
-              title={post.data.title || "No title"}
-              date={post.data.pubDate || new Date()}
-              url={post.slug}
-            />
-          )
+          (post) =>
+            post.data.isPublish && (
+              <PostRow
+                title={post.data.title || "No title"}
+                date={post.data.publishedAt || new Date()}
+                url={post.slug}
+              />
+            )
         )
       }
     </ul>
