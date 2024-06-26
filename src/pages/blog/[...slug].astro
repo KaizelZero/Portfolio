@@ -1,132 +1,71 @@
 ---
-import { getCollection } from "astro:content";
-
-export const prerender = true;
+import { type CollectionEntry, getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import { formatDate, slugify } from "@/lib/utils";
+import { siteConfig } from "@/data/config";
 
 export async function getStaticPaths() {
-  return (await getCollection("blog")).map(({ slug }: { slug: string }) => ({
-    params: { slug },
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
   }));
 }
 
-const { slug } = Astro.params;
+type Props = {
+  post: CollectionEntry<"blog">;
+};
 
-if (slug === undefined) {
-  throw new Error("slug is missing");
-}
+const { post } = Astro.props;
+const { Content } = await post.render();
 
-const posts = (await getCollection("blog")).sort(
-  (
-    blogEntryA: { data: { pubDate: any } },
-    blogEntryB: { data: { pubDate: any } }
-  ) =>
-    (blogEntryB.data.pubDate || new Date()).getTime() -
-    (blogEntryA.data.pubDate || new Date()).getTime()
-);
+const { title, description } = post.data;
 
-const entry = posts.find((entry: { slug: any }) => entry.slug === slug);
-if (entry === undefined) {
-  return Astro.redirect("/404");
-}
+const ogUrl = new URL(`/blog/${slugify(title)}.png`, Astro.url.origin).href;
 
-const { Content } = await entry.render();
+const canonicalURL = new URL(`/blog/${post.slug}`, Astro.url.origin).href;
 ---
 
-<Content />
+<Layout
+  title={title}
+  author={siteConfig.author}
+  description={description}
+  ogImage={ogUrl}
+  canonicalURL={canonicalURL}
+>
+  <main class="mx-auto w-full max-w-3xl px-4 pb-12">
+    <button
+      class="focus-outline mb-2 flex items-center hover:opacity-75"
+      onclick="history.back()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        ><path
+          fill="currentColor"
+          d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6L14 18Z"></path></svg
+      >
+      <span class="text-sm">Go back</span>
+    </button>
+    <h1
+      class="text-2xl font-semibold text-accent"
+      transition:name={slugify(title)}
+    >
+      {title}
+    </h1>
+    <p class="my-2 text-sm">
+      {formatDate(post.data.publishedAt)}
+    </p>
+    <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
+      <Content />
+    </article>
 
-<style is:global>
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-
-  h1 {
-    font-size: 32px;
-  }
-
-  h2 {
-    font-size: 28px;
-  }
-
-  h3 {
-    font-size: 24px;
-  }
-
-  h4 {
-    font-size: 20px;
-  }
-
-  h5 {
-    font-size: 18px;
-  }
-
-  h6 {
-    font-size: 16px;
-  }
-
-  p {
-    margin: 0 0 10px 0;
-  }
-
-  a {
-    color: #1a0dab;
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  ul,
-  ol {
-    margin-left: 20px;
-    margin-bottom: 10px;
-  }
-
-  blockquote {
-    margin: 20px 0;
-    padding-left: 15px;
-    border-left: 5px solid #ccc;
-  }
-
-  pre,
-  code {
-    font-family: "Courier New", monospace;
-    background-color: #f4f4f4;
-    border-radius: 5px;
-  }
-
-  pre {
-    padding: 10px;
-    overflow-x: auto;
-  }
-
-  code {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #d63384;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-
-  th,
-  td {
-    text-align: left;
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-  }
-</style>
+    <!-- <ul class="tags-container">
+      {tags.map((tag) => <Tag name={slugifyStr(tag)} />)}
+    </ul> -->
+  </main>
+  <!-- <Footer /> -->
+</Layout>
