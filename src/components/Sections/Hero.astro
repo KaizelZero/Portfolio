@@ -24,8 +24,11 @@ import { siteConfig } from '@/site-config'
       <Label title={resumeData.location}>
         <Icon name='map-pin' class='h-5 w-5' slot='icon' />
       </Label>
-      <Label as='a' href='Resume.pdf' astro-no-follow title='Download Resume' target='_blank'>
+      <Label as='a' href='Resume.pdf' title='Download Resume' target='_blank'>
         <Icon name='pdf' class='h-5 w-5' slot='icon' />
+      </Label>
+      <Label as='a' href={`mailto:${resumeData.email}`} title={resumeData.email} target='_blank'>
+        <Icon name='email' class='h-5 w-5' slot='icon' />
       </Label>
       <Label title='Connect on Linkedin' as='a' href={socialLinks[1].path} target='_blank'>
         <Icon name={socialLinks[1].icon} class='h-5 w-5 text-foreground/75' slot='icon' />
