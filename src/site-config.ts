@@ -18,6 +18,13 @@ export const siteConfig: SiteConfig = {
   }
 }
 
+export const resumeData = {
+  name: 'Jimmy Truong',
+  email: 'truong.jimmy@outlook.com',
+  location: 'Denver, CO',
+  current: 'Currently Searching'
+}
+
 export const menuLinks: Array<{ title: string; path: string }> = [
   {
     title: 'Home',
