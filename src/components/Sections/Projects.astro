@@ -4,14 +4,12 @@ import ProjectCard from '@/components/ProjectCard.astro'
 import { getAllProjects } from '@/utils'
 
 const projects = await getAllProjects().then((projects) => projects.slice(0, 4))
-
-console.log(projects)
 ---
 
 {
   projects.length > 0 && (
     <Section title='Highlighted Projects' seeMore link='/projects'>
-      <div class='xs:grid-cols-2 grid grid-cols-1 gap-3 sm:flex sm:grid-cols-2 sm:flex-col'>
+      <div class='grid grid-cols-1 gap-3 xs:grid-cols-2 sm:flex sm:grid-cols-2 sm:flex-col'>
         {projects.map((project) => (
           <ProjectCard
             href={'/projects/' + project.slug}
