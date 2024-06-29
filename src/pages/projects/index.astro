@@ -1,0 +1,31 @@
+---
+export const prerender = true
+
+import ProjectPreview from '@/components/project/ProjectPreview.astro'
+import PageLayout from '@/layouts/BaseLayout.astro'
+
+import { getAllProjects } from '@/utils'
+
+const projects = await getAllProjects()
+
+const meta = {
+  description: 'Projects',
+  title: 'Projects'
+}
+---
+
+<PageLayout meta={meta}>
+  <div class='w-full'>
+    {projects.length === 0 && <p>No projects yet.</p>}
+
+    {
+      projects.length > 0 && (
+        <div class='grid w-full gap-3 md:grid-cols-2 lg:grid-cols-3'>
+          {projects.map((project) => (
+            <ProjectPreview project={project} />
+          ))}
+        </div>
+      )
+    }
+  </div>
+</PageLayout>
