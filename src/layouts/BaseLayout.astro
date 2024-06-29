@@ -5,6 +5,7 @@ import { siteConfig } from '@/site-config'
 import BaseHead from '@/components/BaseHead.astro'
 import Footer from '@/components/layout/Footer.astro'
 import Header from '@/components/layout/Header.astro'
+import TailwindIndicator from '@/components/layout/TailwindIndicator.astro'
 
 interface Props {
   meta: SiteMeta
@@ -29,5 +30,6 @@ const {
       <slot />
       <Footer />
     </main>
+    <TailwindIndicator />
   </body>
 </html>
