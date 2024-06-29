@@ -43,10 +43,6 @@ const projects = defineCollection({
         .string()
         .or(z.date())
         .transform((val) => new Date(val)),
-      updatedDate: z
-        .string()
-        .optional()
-        .transform((str) => (str ? new Date(str) : undefined)),
       coverImage: z
         .object({
           src: image(),

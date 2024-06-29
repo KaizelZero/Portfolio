@@ -1,8 +1,7 @@
 ---
 title: 'Unstoppable'
 description: 'This project is a Galaga clone. Where the player controls a spaceship and must shoot down enemy ships.'
-publishDate: '22 Feb 2023'
-updatedDate: 22 Jan 2024
+publishDate: 'Oct 21, 2021'
 draft: true
 demoURL: 'https://kaizelzero.github.io/Unstoppable/'
 repoURL: 'https://github.com/KaizelZero/Unstoppable'

@@ -33,6 +33,10 @@ export const resumeData = {
 
 export const menuLinks: Array<{ title: string; path: string }> = [
   {
+    title: 'Home',
+    path: '/'
+  },
+  {
     title: 'Blog',
     path: '/blog/'
   },
