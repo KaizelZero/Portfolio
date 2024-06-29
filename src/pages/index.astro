@@ -1,38 +1,26 @@
 ---
 import PageLayout from '@/layouts/BaseLayout.astro'
-
-import { Image } from 'astro:assets'
-import astro from '../assets/about-astro.png'
-import Label from '@/components/Label.astro'
-import { resumeData, socialLinks } from '@/site-config'
-import { Icon } from 'astro-icon/components'
-import { siteConfig } from '@/site-config'
+import Section from '@/components/Section.astro'
+import Hero from '@/components/Sections/Hero.astro'
+import Experience from '@/components/Sections/Experience.astro'
+import Education from '@/components/Sections/Education.astro'
+import About from '@/components/Sections/About.astro'
+import Projects from '@/components/Sections/Projects.astro'
+import Certifications from '@/components/Sections/Certifications.astro'
+import Skills from '@/components/Sections/Skills.astro'
 ---
 
 <PageLayout meta={{ title: 'Home' }}>
   <div class='flex w-full flex-col gap-y-10'>
-    <section class='flex flex-col items-center gap-y-7'>
-      <Image
-        src={astro}
-        alt='profile photo'
-        class='h-28 w-auto rounded-full bg-[#FFBE98] p-2'
-        loading='eager'
-      />
-
-      <div class='flex flex-col items-center gap-y-4'>
-        <h1 class='text-3xl font-bold'>{siteConfig.author}</h1>
-        <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
-          <Label title={resumeData.current}>
-            <Icon name='briefcase' class='h-5 w-5' slot='icon' />
-          </Label>
-          <Label title={resumeData.location}>
-            <Icon name='map-pin' class='h-5 w-5' slot='icon' />
-          </Label>
-          <Label title='Connect on Linkedin' as='a' href={socialLinks[1].path} target='_blank'>
-            <Icon name={socialLinks[1].icon} class='h-5 w-5 text-foreground/75' slot='icon' />
-          </Label>
-        </div>
-      </div>
-    </section>
+    <!-- HERO Secion -->
+    <Hero />
+    <About />
+    <!-- No Professional Work Experience -->
+    <!-- <Experience /> -->
+    <Education />
+    <Projects />
+    <!-- No Certifications -->
+    <!-- <Certifications /> -->
+    <Skills />
   </div>
 </PageLayout>

@@ -22,7 +22,13 @@ export const resumeData = {
   name: 'Jimmy Truong',
   email: 'truong.jimmy@outlook.com',
   location: 'Denver, CO',
-  current: 'Currently Searching'
+  current: 'Currently Searching',
+  skills: {
+    languages: ['JavaScript', 'TypeScript', 'Python', 'C++'],
+    frontend: ['React', 'Next.js', 'Svelte', 'Sveltekit', 'Astro'],
+    backend: ['Node.js', 'Express.js'],
+    others: ['PostgreSQL', 'Docker', 'Git', 'Linux']
+  }
 }
 
 export const menuLinks: Array<{ title: string; path: string }> = [
