@@ -29,6 +29,19 @@ export const menuLinks: Array<{ title: string; path: string }> = [
   }
 ]
 
+export const socialLinks: Array<{ title: string; path: string; icon: string }> = [
+  {
+    title: 'GitHub',
+    path: 'https://github.com/kaizelzero',
+    icon: 'social/github'
+  },
+  {
+    title: 'LinkedIn',
+    path: 'https://www.linkedin.com/in/truong-jimmy/',
+    icon: 'social/linkedin'
+  }
+]
+
 // https://expressive-code.com/reference/configuration/
 export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
   // One dark, one light theme => https://expressive-code.com/guides/themes/#available-themes
