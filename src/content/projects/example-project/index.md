@@ -9,6 +9,9 @@ repoURL: 'https://github.com/KaizelZero/Portfolio'
 thumbnail:
   src: './coming-soon.png'
   alt: 'Example project thumbnail'
+coverImage:
+  src: './coming-soon.png'
+  alt: 'Example project cover image'
 ---
 
 ```js

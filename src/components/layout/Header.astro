@@ -1,6 +1,7 @@
 ---
 import ThemeToggle from '@/components/ThemeToggle.astro'
 import { menuLinks } from '@/site-config'
+import { cn } from '@/utils'
 ---
 
 <header class='mb-12 flex w-full flex-wrap pb-3 text-sm sm:flex-nowrap sm:justify-start'>
@@ -12,10 +13,13 @@ import { menuLinks } from '@/site-config'
 
     <div class='flex flex-row items-center justify-center gap-x-3 sm:gap-x-7'>
       {
-        menuLinks.map(({ title, path }) => (
+        menuLinks.map(({ title, path }, i) => (
           <a
             href={path}
-            class='flex-none text-[1.05rem] font-medium hover:text-foreground/75'
+            class={cn(
+              i === 0 && 'hidden sm:block',
+              'flex-none text-[1.05rem] font-medium hover:text-foreground/75'
+            )}
             aria-label='Nav Menu Item'
           >
             {title}

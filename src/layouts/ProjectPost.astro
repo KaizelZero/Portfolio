@@ -14,7 +14,7 @@ interface Props {
 const { project } = Astro.props
 const { data } = project
 
-const articleDate = data.updatedDate?.toISOString() ?? data.publishDate.toISOString()
+const articleDate = data.publishDate.toISOString()
 const { headings } = await project.render()
 
 const { description, title } = data
