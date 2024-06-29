@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets'
-import astro from '@/assets/about-astro.png'
+import hero from '@/assets/851855.webp'
 import Label from '@/components/Label.astro'
 import { resumeData, socialLinks } from '@/site-config'
 import { Icon } from 'astro-icon/components'
@@ -9,9 +9,9 @@ import { siteConfig } from '@/site-config'
 
 <section class='flex flex-col items-center gap-y-7'>
   <Image
-    src={astro}
+    src={hero}
     alt='profile photo'
-    class='h-28 w-auto rounded-full bg-[#FFBE98] p-2'
+    class='h-28 w-auto rounded-full border-2 border-slate-500 dark:border-slate-200'
     loading='eager'
   />
 
@@ -23,6 +23,9 @@ import { siteConfig } from '@/site-config'
       </Label>
       <Label title={resumeData.location}>
         <Icon name='map-pin' class='h-5 w-5' slot='icon' />
+      </Label>
+      <Label as='a' href='Resume.pdf' astro-no-follow title='Download Resume' target='_blank'>
+        <Icon name='pdf' class='h-5 w-5' slot='icon' />
       </Label>
       <Label title='Connect on Linkedin' as='a' href={socialLinks[1].path} target='_blank'>
         <Icon name={socialLinks[1].icon} class='h-5 w-5 text-foreground/75' slot='icon' />
