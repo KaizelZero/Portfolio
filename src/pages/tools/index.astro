@@ -3,6 +3,11 @@ import PageLayout from '@/layouts/BaseLayout.astro'
 import ToolSection from '@/components/ToolSection.astro'
 import Button from '@/components/Button.astro'
 
+const meta = {
+  description: 'A list of all the tools I use in my development and day to day life',
+  title: 'Tools'
+}
+
 const DESIGN = [
   {
     name: 'Figma',
@@ -79,7 +84,7 @@ const DEVELOPMENT = [
 ]
 ---
 
-<PageLayout meta={{ title: 'Home' }}>
+<PageLayout meta={meta}>
   <div class='w-full'>
     <Button title='Back' href='/' style='button'>
       <svg
