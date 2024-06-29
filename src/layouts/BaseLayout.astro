@@ -1,8 +1,23 @@
 ---
+import type { SiteMeta } from '@/types'
 import ThemeProvider from '@/components/ThemeProvider.astro'
+import { siteConfig } from '@/site-config'
+import BaseHead from '@/components/BaseHead.astro'
+
+interface Props {
+  meta: SiteMeta
+}
+
+const {
+  meta: { articleDate, description = siteConfig.description, ogImage, title }
+} = Astro.props
 ---
 
-<html lang='en'>
+<html lang={siteConfig.lang} class=''>
+  <head>
+    <BaseHead articleDate={articleDate} description={description} ogImage={ogImage} title={title} />
+  </head>
+
   <body class='flex justify-center bg-background'>
     <ThemeProvider />
     <main
