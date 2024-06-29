@@ -25,7 +25,7 @@ export const resumeData = {
   current: 'Currently Searching',
   skills: {
     languages: ['JavaScript', 'TypeScript', 'Python', 'C++'],
-    frontend: ['React', 'Next.js', 'Svelte', 'Sveltekit', 'Astro'],
+    frontend: ['React', 'Next.js', 'Svelte', 'Sveltekit', 'Astro', 'TailwindCSS'],
     backend: ['Node.js', 'Express.js'],
     others: ['PostgreSQL', 'Docker', 'Git', 'Linux']
   }
