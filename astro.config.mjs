@@ -1,40 +1,42 @@
-// https://astro.build/config
-import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
-import sitemap from "@astrojs/sitemap";
-import robotsTxt from "astro-robots-txt";
-import { siteConfig } from "./src/data/config";
-import remarkToc from "remark-toc";
-import remarkCollapse from "remark-collapse";
-import partytown from "@astrojs/partytown";
+import mdx from '@astrojs/mdx'
+import sitemap from '@astrojs/sitemap'
+import tailwind from '@astrojs/tailwind'
+import expressiveCode from 'astro-expressive-code'
+import icon from 'astro-icon'
+import { defineConfig } from 'astro/config'
+import rehypeExternalLinks from 'rehype-external-links'
+import remarkUnwrapImages from 'remark-unwrap-images'
+import { expressiveCodeOptions } from './src/site-config'
+import { remarkReadingTime } from './src/utils/remarkReadingTime.ts'
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://jimmyt.dev',
   integrations: [
-    tailwind(),
-    sitemap(),
-    robotsTxt(),
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-      },
+    expressiveCode(expressiveCodeOptions),
+    tailwind({
+      applyBaseStyles: false
     }),
+    sitemap(),
+    mdx(),
+    icon()
   ],
-  site: siteConfig.url,
   markdown: {
-    syntaxHighlight: "shiki",
-    remarkPlugins: [
-      remarkToc,
+    remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
+    rehypePlugins: [
       [
-        remarkCollapse,
+        rehypeExternalLinks,
         {
-          test: "Table of contents",
-        },
-      ],
+          target: '_blank',
+          rel: ['nofollow, noopener, noreferrer']
+        }
+      ]
     ],
-    shikiConfig: {
-      theme: "dracula",
-      wrap: false,
-    },
+    remarkRehype: {
+      footnoteLabelProperties: {
+        className: ['']
+      }
+    }
   },
-});
+  prefetch: true
+})

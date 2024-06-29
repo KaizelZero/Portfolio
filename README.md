@@ -45,3 +45,9 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Where to get icons
+
+Use [Iconify](https://icon-sets.iconify.design/) to find icons
+
+Based on: [Astro Resume](https://github.com/srleom/astro-theme-resume)

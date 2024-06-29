@@ -1,24 +1,64 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, z } from 'astro:content'
 
-const postsCollection = defineCollection({
-  type: "content",
+function removeDupsAndLowerCase(array: string[]) {
+  if (!array.length) return array
+  const lowercaseItems = array.map((str) => str.toLowerCase())
+  const distinctItems = new Set(lowercaseItems)
+  return Array.from(distinctItems)
+}
 
+const post = defineCollection({
+  type: 'content',
   schema: ({ image }) =>
     z.object({
-      title: z.string(),
-      publishedAt: z.date(),
-      description: z.string(),
-      isPublish: z.boolean(),
-      isDraft: z.boolean().default(false),
-      image: z.string().url().optional(),
-      youtube: z.string().url().optional(),
-      ogImage: image()
-        .refine((img) => img.width >= 1200 && img.height >= 630, {
-          message: "OpenGraph image must be at least 1200 X 630 pixels!",
+      title: z.string().max(60),
+      description: z.string().min(50).max(160),
+      publishDate: z
+        .string()
+        .or(z.date())
+        .transform((val) => new Date(val)),
+      updatedDate: z
+        .string()
+        .optional()
+        .transform((str) => (str ? new Date(str) : undefined)),
+      coverImage: z
+        .object({
+          src: image(),
+          alt: z.string()
         })
-        .or(z.string())
         .optional(),
-    }),
-});
+      draft: z.boolean().default(false),
+      tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
+      ogImage: z.string().optional()
+    })
+})
 
-export const collections = { posts: postsCollection };
+const projects = defineCollection({
+  type: 'content',
+  schema: ({ image }) =>
+    z.object({
+      title: z.string().max(60),
+      description: z.string().min(50).max(160),
+      publishDate: z
+        .string()
+        .or(z.date())
+        .transform((val) => new Date(val)),
+      coverImage: z
+        .object({
+          src: image(),
+          alt: z.string()
+        })
+        .optional(),
+      thumbnail: z
+        .object({
+          src: image(),
+          alt: z.string()
+        })
+        .optional(),
+      draft: z.boolean().default(false),
+      demoURL: z.string().optional(),
+      repoURL: z.string().optional()
+    })
+})
+
+export const collections = { post, projects }

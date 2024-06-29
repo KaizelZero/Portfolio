@@ -1,0 +1,26 @@
+---
+import Section from '@/components/Section.astro'
+import ProjectCard from '@/components/ProjectCard.astro'
+import { getAllProjects } from '@/utils'
+
+const projects = await getAllProjects().then((projects) => projects.slice(0, 4))
+---
+
+{
+  projects.length > 0 && (
+    <Section title='Highlighted Projects' seeMore link='/projects'>
+      <div class='grid grid-cols-1 gap-3 xs:grid-cols-2 sm:flex sm:grid-cols-2 sm:flex-col'>
+        {projects.map((project) => (
+          <ProjectCard
+            href={'/projects/' + project.slug}
+            heading={project.data.title}
+            subheading={project.data.description}
+            imagePath={project.data.thumbnail?.src ?? '/src/assets/coming-soon.png'}
+            altText={project.data.thumbnail?.alt ?? 'Coming soon...'}
+            class='w-full'
+          />
+        ))}
+      </div>
+    </Section>
+  )
+}

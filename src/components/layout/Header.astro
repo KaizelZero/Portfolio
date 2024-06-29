@@ -1,0 +1,32 @@
+---
+import ThemeToggle from '@/components/ThemeToggle.astro'
+import { menuLinks } from '@/site-config'
+import { cn } from '@/utils'
+---
+
+<header class='mb-12 flex w-full flex-wrap pb-3 text-sm sm:flex-nowrap sm:justify-start'>
+  <nav
+    class='relative mx-auto flex w-full items-center justify-between sm:flex sm:items-center'
+    aria-label='global'
+  >
+    <a class='flex-none text-xl font-semibold' href='/' aria-label='Brand'>resume</a>
+
+    <div class='flex flex-row items-center justify-center gap-x-3 sm:gap-x-7'>
+      {
+        menuLinks.map(({ title, path }, i) => (
+          <a
+            href={path}
+            class={cn(
+              i === 0 && 'hidden sm:block',
+              'flex-none text-[1.05rem] font-medium hover:text-foreground/75'
+            )}
+            aria-label='Nav Menu Item'
+          >
+            {title}
+          </a>
+        ))
+      }
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>
