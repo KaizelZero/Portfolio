@@ -10,7 +10,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 {
   allPostsByDate.length > 0 && (
-    <Section title='Posts'>
+    <Section title='Posts' seeMore link='/blog'>
       <ul class='flex flex-col gap-y-2'>
         {allPostsByDate.map((p) => (
           <li class='flex flex-col gap-x-2 sm:flex-row'>
