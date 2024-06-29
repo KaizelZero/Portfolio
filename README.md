@@ -49,3 +49,5 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 ## Where to get icons
 
 Use [Iconify](https://icon-sets.iconify.design/) to find icons
+
+Based on: [Astro Resume](https://github.com/srleom/astro-theme-resume)
