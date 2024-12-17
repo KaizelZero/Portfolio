@@ -1,10 +1,32 @@
 ---
 import Section from '@/components/Section.astro'
 import Card from '@/components/Card.astro'
+
+function calculateMonthsSince(startDateString: string): string {
+  const startDate = new Date(startDateString)
+  const currentDate = new Date()
+
+  // Calculate the difference in months
+  const monthDiff =
+    (currentDate.getFullYear() - startDate.getFullYear()) * 12 +
+    (currentDate.getMonth() - startDate.getMonth())
+
+  // Format the date string with dynamic month calculation
+  return `${startDate.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric'
+  })} - Present (${monthDiff} months)`
+}
+
+const IQGEO_TIME = calculateMonthsSince('12-02-2024')
 ---
 
+<script is:inline></script>
+
 <Section title='Experience'>
-  <Card
+  <!-- Example Cards -->
+  <!-- <Card
     heading='Lorem Ipsum'
     subheading='Sit amet consectetur'
     date='Dec 2022 - Nov 2023'
@@ -27,6 +49,14 @@ import Card from '@/components/Card.astro'
     date='Dec 2022 - Nov 2023'
     imagePath='/src/assets/about-astro.png'
     altText='Lorem, ipsum dolor sit'
+    imageClass='h-12 w-auto md:-left-16'
+  /> -->
+  <Card
+    heading='IQGEO'
+    subheading='Technical Support Engineer'
+    date={IQGEO_TIME}
+    imagePath='/src/assets/iqgeo-logo.png'
+    altText='IQGEO Logo'
     imageClass='h-12 w-auto md:-left-16'
   />
 </Section>
