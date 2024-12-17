@@ -30,6 +30,7 @@ import { Icon } from 'astro-icon/components'
                 class='inline-block text-muted-foreground transition-all hover:text-muted-foreground/75'
                 href={socialLink.path}
                 target='_blank'
+                aria-label={socialLink.title}
               >
                 <Icon name={socialLink.icon} class='size-6 flex-shrink-0' />
               </a>
